@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">VideoCarousel</string>
+    <string name="empty_video_content">There\'s no video content on your device!</string>
+</resources>

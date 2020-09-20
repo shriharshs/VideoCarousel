@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="videoMedia"
+            type="com.shriharsh.videocarousel.domain.model.VideoMedia" />
+
+        <variable
+            name="exoPlayerState"
+            type="com.shriharsh.videocarousel.utils.exoplayerutils.ExoPlayerVideoState" />
+
+        <variable
+            name="videoPosition"
+            type="int" />
+
+    </data>
+
+    <RelativeLayout xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/darker_gray"
+        tools:context=".features.videolist.ui.MainActivity">
+
+        <com.google.android.exoplayer2.ui.PlayerView
+            android:id="@+id/video_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            app:video_index="@{videoPosition}"
+            app:exo_player_state="@{exoPlayerState}"
+            app:surface_type="texture_view"
+            app:media_url="@{videoMedia.mediaUrl}" />
+
+        <ImageView
+            android:id="@+id/bookmark"
+            android:layout_width="@dimen/dp_40"
+            android:layout_height="@dimen/dp_40"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="@dimen/dp_5"
+            android:layout_marginEnd="@dimen/dp_5"
+            android:padding="@dimen/dp_5"
+            android:src="@drawable/ic_favorite_border"
+            app:tint="@color/colorPrimary" />
+
+    </RelativeLayout>
+</layout>

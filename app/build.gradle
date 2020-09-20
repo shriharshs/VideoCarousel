@@ -1,0 +1,86 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'dagger.hilt.android.plugin'
+
+android {
+    compileSdkVersion rootProject.compile_sdk
+    buildToolsVersion rootProject.build_tools_version
+
+    repositories {
+        maven { url "https://jitpack.io" }
+    }
+
+    defaultConfig {
+        applicationId "com.shriharsh.videocarousel"
+        minSdkVersion rootProject.min_sdk
+        targetSdkVersion rootProject.target_sdk
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildFeatures {
+        dataBinding true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation "androidx.core:core-ktx:$core_ktx_version"
+    implementation "androidx.appcompat:appcompat:$app_compat_version"
+    implementation "androidx.constraintlayout:constraintlayout:$constraint_layout_version"
+
+    //Architecture Components
+    implementation "androidx.lifecycle:lifecycle-runtime:$architecture_components_version"
+    implementation "androidx.lifecycle:lifecycle-extensions:$architecture_components_version"
+    implementation "androidx.lifecycle:lifecycle-common:$architecture_components_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$architecture_components_version"
+    implementation "androidx.recyclerview:recyclerview:$app_compat_version"
+
+    implementation "androidx.fragment:fragment-ktx:$fragment_ktx_version"
+
+    //Timber
+    implementation "com.jakewharton.timber:timber:$timber_version"
+
+    //Hilt
+    implementation "com.google.dagger:hilt-android:$hilt_version"
+    kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
+    androidTestImplementation "com.google.dagger:hilt-android-testing:$hilt_version"
+    kaptAndroidTest "com.google.dagger:hilt-android-compiler:$hilt_version"
+    implementation "androidx.hilt:hilt-lifecycle-viewmodel:$hilt_viewmodel_version"
+    kapt "androidx.hilt:hilt-compiler:$hilt_viewmodel_version"
+
+    //Room
+    implementation "androidx.room:room-runtime:$room_version"
+    implementation "androidx.room:room-ktx:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+
+    //ExoPlayer
+    implementation "com.google.android.exoplayer:exoplayer:$exo_player_version"
+
+    //Testing
+    testImplementation "junit:junit:$junit_version"
+    androidTestImplementation "androidx.test.ext:junit:$junit_ext_version"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_core_version"
+
+}
